@@ -1,0 +1,35 @@
+// ==UserScript==
+// @name         popcatbutton
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://popcat.click/
+// @icon         https://www.google.com/s2/favicons?domain=popcat.click
+// @grant        none
+// ==/UserScript==
+
+    let btn = document.createElement("button");
+    var body = document.getElementsByTagName("body")[0];
+    let nbtn = document.createElement("button");
+
+(function() {
+    'use strict';
+    btn.innerHTML = "開始";
+    body.appendChild(btn);
+    btn.style.cssText = 'position: relative; top: -300px; left: 50px';
+    nbtn.innerHTML = "停止";
+    body.appendChild(nbtn);
+    nbtn.style.cssText = 'position: relative; top: -300px; left: 50px';
+
+    btn.onclick =()=>{ btn.disabled = true,startclick(); }
+})();
+
+   function startclick(){
+        var timeoutID=setInterval(()=>{document.dispatchEvent(new Event("keydown"))},55)
+        nbtn.onclick =()=>{ clearInterval(timeoutID),btn.disabled = false,Exit(); }
+  }
+
+  function Exit(){
+      return 0;
+  }
